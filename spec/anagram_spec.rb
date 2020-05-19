@@ -1,4 +1,5 @@
 require 'anagram_computer.rb'
+require 'key.rb'
 
 RSpec.describe AnagramComputer do
 
@@ -25,6 +26,13 @@ RSpec.describe AnagramComputer do
     it 'counts how many words are in a text file' do
       expect(@anagram_computer.word_count).to eq(word_list.length)
     end
+
+    it 'creates a key composed of an array containing count of each letter in indexed positions' do
+        input = "abctest"
+        output = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
+        expect(@anagram_computer.create_key(input)).to eq(output)
+    end
+
 
 
 end
