@@ -1,4 +1,5 @@
 require 'anagram_computer.rb'
+require 'key.rb'
 
 RSpec.describe AnagramComputer do
 
@@ -26,11 +27,12 @@ RSpec.describe AnagramComputer do
       expect(@anagram_computer.word_count).to eq(word_list.length)
     end
 
-    it 'creates a key composed of an array containing count of each letter in indexed positions' do
-        input = "abctest"
-        expected_output = [1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,0,0]
-
-        expect(@anagram_computer.create_key(input)).to eq(expected_output)
+    it 'adds key ciphers to an array containing all ciphers' do
+      word = "testabc"
+      @anagram_computer.add_cipher_for(word)
+      key = Key.new(word)
+    
+      expect(@anagram_computer.cipher_list.last).to eq(key.cipher)
     end
 
 

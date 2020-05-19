@@ -1,8 +1,9 @@
 class AnagramComputer
 
+    attr_reader :cipher_list
+
     def initialize
-        @key = Key.new
-        @key_list = []
+        @cipher_list = []
     end
 
     def word_list
@@ -13,16 +14,14 @@ class AnagramComputer
         word_list.length
     end
 
-    def create_key(input)
-        
-        output = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-
-        input.chars do |ch|
-            position_in_alphabet = ch.upcase.ord - 65
-            output[position_in_alphabet] += 1
-        end
-
-        return output
-
+    def add_cipher_for(word)
+        key = Key.new(word)
+        @cipher_list << key.cipher
     end
+    
+
+
+
+
+
 end
