@@ -1,5 +1,4 @@
 require 'anagram_computer.rb'
-require 'key.rb'
 
 RSpec.describe AnagramComputer do
 
@@ -29,8 +28,9 @@ RSpec.describe AnagramComputer do
 
     it 'creates a key composed of an array containing count of each letter in indexed positions' do
         input = "abctest"
-        output = [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]
-        expect(@anagram_computer.create_key(input)).to eq(output)
+        expected_output = [1,1,1,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,2,0,0,0,0,0,0]
+
+        expect(@anagram_computer.create_key(input)).to eq(expected_output)
     end
 
 
