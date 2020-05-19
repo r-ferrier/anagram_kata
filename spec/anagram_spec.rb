@@ -4,7 +4,8 @@ require 'key.rb'
 RSpec.describe AnagramComputer do
 
     before (:each) do
-        @anagram_computer = AnagramComputer.new
+        file = "./wordlist.txt"
+        @anagram_computer = AnagramComputer.new(file)
     end
 
     def word_list
@@ -33,6 +34,17 @@ RSpec.describe AnagramComputer do
       key = Key.new(word)
     
       expect(@anagram_computer.cipher_list.last).to eq(key.cipher)
+    end
+
+    it 'adds every word from a file to the list of ciphers' do
+      word_list = @anagram_computer.word_list
+      cipher_list = @anagram_computer.cipher_list
+      last_cipher = cipher_list.last
+      key_from_last_word = Key.new("tie")
+
+      expect(cipher_list.length).to eq(word_list.length)
+      expect(most_recent_cipher).to eq(key_from_last_word.cipher)
+
     end
 
 
