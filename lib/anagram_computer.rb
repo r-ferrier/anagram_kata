@@ -1,0 +1,2 @@
+class AnagramComputer
+end
