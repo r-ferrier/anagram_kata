@@ -12,4 +12,11 @@ RSpec.describe AnagramComputer do
       expect(ac.word_list).to be_kind_of(Array) 
     end
 
+    it 'reads words from a text file' do
+      ac = AnagramComputer.new
+      word_list = File.read("./wordlist.txt").split
+      
+      expect(ac.word_list).to eq(word_list)
+    end
+
 end

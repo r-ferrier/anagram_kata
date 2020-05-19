@@ -1,6 +1,6 @@
 class AnagramComputer
 
     def word_list
-    ["word", "list"]
+      File.read("./wordlist.txt").split
     end
 end
