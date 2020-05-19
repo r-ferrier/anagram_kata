@@ -7,4 +7,9 @@ RSpec.describe AnagramComputer do
       expect(anagram_computer).to be_kind_of(AnagramComputer)
     end    
 
+    it 'has a list of words' do
+      ac = AnagramComputer.new
+      expect(ac.word_list).to be_kind_of(Array) 
+    end
+
 end
