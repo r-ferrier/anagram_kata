@@ -12,7 +12,7 @@ class FindAnagrams
     end
 
     def print_formatted_anagrams
-        puts "\nI found the following anagrams for you:"
+        puts "\nI found #{@anagram_computer.number_of_anagrams} anagrams for you, in #{@anagram_computer.number_of_anagram_sets} sets:"
         @anagram_computer.anagrams_list.each do |line|
             puts line.join(", ")
         end
@@ -25,11 +25,19 @@ class FindAnagrams
         end
     end
 
+    def print_largest_anagram_sets
+        puts "\nThe largest anagram sets I could find each have #{@anagram_computer.largest_anagram_set_length} anagrams. They are:"
+        @anagram_computer.largest_anagram_sets.each do |line|
+            puts line.join(", ")
+        end
+    end
+
 
     find_anagrams = FindAnagrams.new
     find_anagrams.introduction
     find_anagrams.print_formatted_anagrams
     find_anagrams.print_longest_anagram
+    find_anagrams.print_largest_anagram_sets
     puts ""
 
 end

@@ -65,4 +65,39 @@ RSpec.describe AnagramComputer do
 
       expect(@anagram_computer.longest_anagrams).to eq(longest_words)
     end
+
+    it 'returns the number of individual anagrams it found' do
+      @anagram_computer.compute
+      number_of_anagrams = 4
+
+      expect(@anagram_computer.number_of_anagrams).to eq(number_of_anagrams)
+    end
+
+    it 'returns the number of sets of anagrams it found' do
+      @anagram_computer.compute
+      number_of_anagram_sets = 2
+
+      expect(@anagram_computer.number_of_anagram_sets).to eq(number_of_anagram_sets)
+    end
+
+    it 'returns the longest sets of anagrams it found' do
+      @anagram_computer.compute
+      largest_anagram_sets = [["words","sword"],["lis't","slit"]]
+
+      expect(@anagram_computer.largest_anagram_sets).to eq(largest_anagram_sets)
+    end
+
+    it 'returns the amount of anagram sets it found' do
+      @anagram_computer.compute
+      anagram_set_count = 2
+
+      expect(@anagram_computer.number_of_anagram_sets).to eq(anagram_set_count)
+    end
+
+    it 'returns the amount of anagrams it found' do
+      @anagram_computer.compute
+      anagram_count = 4
+
+      expect(@anagram_computer.number_of_anagrams).to eq(anagram_count)
+    end
 end
