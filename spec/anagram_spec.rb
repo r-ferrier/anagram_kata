@@ -47,7 +47,7 @@ RSpec.describe AnagramComputer do
 
     it 'creates an array of matched anagrams' do
       @anagram_computer.compute
-      expected_result = [["words","sword"],["list","slit"]]
+      expected_result = [["words","sword"],["lis't","slit"]]
       
       expect(@anagram_computer.anagrams_list).to eq(expected_result)
     end
@@ -62,11 +62,7 @@ RSpec.describe AnagramComputer do
     it 'finds the longest words that are anagrams' do
       @anagram_computer.compute
       longest_words = [["words","sword"]]
-      
+
       expect(@anagram_computer.longest_anagrams).to eq(longest_words)
     end
-
-
-
-
 end

@@ -9,7 +9,7 @@ class Key
     private
 
     def create_cipher(input)
-        input.chars do |ch|
+        input.gsub(/\W+/, '').chars do |ch|
             position_in_alphabet = ch.upcase.ord - 65
             @cipher[position_in_alphabet] += 1
         end

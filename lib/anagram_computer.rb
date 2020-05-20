@@ -1,3 +1,5 @@
+require_relative 'key'
+
 class AnagramComputer
 
     attr_reader :word_list, :result, :anagrams_list, :cipher_list
@@ -21,7 +23,7 @@ class AnagramComputer
 
     def longest_anagrams
         longest_word_length = length_of_longest_anagram
-        @anagrams_list.select { |anagrams| anagrams.first.length == longest_word_length }.map.to_a
+        @anagrams_list.select { |anagrams| anagrams.first.gsub(/\W+/, '').length == longest_word_length }.map.to_a
     end
 
     def length_of_longest_anagram
