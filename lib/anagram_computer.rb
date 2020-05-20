@@ -1,10 +1,11 @@
 class AnagramComputer
 
-    attr_reader :word_list, :result
+    attr_reader :word_list, :result, :anagrams_list, :cipher_list
 
     def initialize(file)
         @cipher_list = []
         @result = []
+        @anagrams_list = []
         read_word_list(file)
     end
 
@@ -36,27 +37,20 @@ class AnagramComputer
     end
 
     def find_anagrams
-      last_index = @cipher_list.length-1
-
       @cipher_list.each_with_index do |cipher, cipher_index|
-       
-        @result << [cipher_index]
-
-        @cipher_list.last(last_index-cipher_index).each.with_index(1) do |comparator, comparator_index|
-          if comparator == cipher
-            @result.last << cipher_index + comparator_index
-          end
+        matches = []
+        
+        @cipher_list.last(@cipher_list.length-cipher_index).each_with_index do |comparator, comparator_index|
+          matches << (cipher_index + comparator_index) if comparator == cipher
         end
-
-        @result.pop if @result.last.length < 2
+        
+        @result << matches if matches.length > 1
       end
     end
 
     def return_anagrams
-      @result.each do |result_array|
-        result_array.map! do |word_index|
-            @word_list[word_index]
-        end
+      @result.each do |cipher_array|
+        @anagrams_list << cipher_array.map {|word_index| @word_list[word_index]}
       end
     end
     

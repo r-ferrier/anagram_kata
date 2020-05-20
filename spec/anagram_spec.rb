@@ -28,41 +28,30 @@ RSpec.describe AnagramComputer do
       expect(@anagram_computer.word_count).to eq(5)
     end
 
-    it 'adds key ciphers to an array containing all ciphers' do
-      word = "testabc"
-      @anagram_computer.add_cipher_for(word)
-      key = Key.new(word)
-    
-      expect(@anagram_computer.cipher_list.last).to eq(key.cipher)
-    end
 
     it 'adds every word from a file to the list of ciphers' do
-      @anagram_computer.create_cipher_list
-      word_list = @anagram_computer.word_list
+      @anagram_computer.compute
       cipher_list = @anagram_computer.cipher_list
       last_cipher = cipher_list.last
       key_from_last_word = Key.new("tie")
 
-      expect(cipher_list.length).to eq(word_list.length)
+      expect(cipher_list.length).to eq(@anagram_computer.word_count)
       expect(last_cipher).to eq(key_from_last_word.cipher)
 
     end
 
     it 'creates an array containing arrays of the indexes of all matching ciphers' do
-      @anagram_computer.create_cipher_list
-      @anagram_computer.find_anagrams
+      @anagram_computer.compute
       expected_result = [[0,2],[1,3]]
 
       expect(@anagram_computer.result).to eq(expected_result)
     end
 
     it 'creates an array of matched anagrams' do
-      @anagram_computer.create_cipher_list
-      @anagram_computer.find_anagrams
-      @anagram_computer.return_anagrams
-    
+      @anagram_computer.compute
       expected_result = [["words","sword"],["list","slit"]]
-      expect(@anagram_computer.result).to eq(expected_result)
+      
+      expect(@anagram_computer.anagrams_list).to eq(expected_result)
     end
 
 
