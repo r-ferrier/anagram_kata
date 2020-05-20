@@ -1,6 +1,6 @@
 class AnagramComputer
 
-    attr_reader :cipher_list, :word_list, :result
+    attr_reader :cipher_list, :word_list, :result, :anagrams_list
 
     def initialize(file)
         @cipher_list = []
@@ -33,7 +33,7 @@ class AnagramComputer
       @cipher_list.each_with_index do |cipher, cipher_index|
        
         @result << [cipher_index]
-
+        
         @cipher_list.last(last_index-cipher_index).each.with_index(1) do |comparator, comparator_index|
           if comparator == cipher
             @result.last << cipher_index + comparator_index
@@ -41,6 +41,14 @@ class AnagramComputer
         end
 
         @result.pop if @result.last.length < 2
+      end
+    end
+
+    def return_anagrams
+      @result.each do |result_array|
+        result_array.map! do |word_index|
+            @word_list[word_index]
+        end
       end
     end
     

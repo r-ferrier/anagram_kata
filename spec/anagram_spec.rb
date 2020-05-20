@@ -52,6 +52,16 @@ RSpec.describe AnagramComputer do
       @anagram_computer.create_cipher_list
       @anagram_computer.find_anagrams
       expected_result = [[0,2],[1,3]]
+
+      expect(@anagram_computer.result).to eq(expected_result)
+    end
+
+    it 'creates an array of matched anagrams' do
+      @anagram_computer.create_cipher_list
+      @anagram_computer.find_anagrams
+      @anagram_computer.return_anagrams
+    
+      expected_result = [["words","sword"],["list","slit"]]
       expect(@anagram_computer.result).to eq(expected_result)
     end
 
