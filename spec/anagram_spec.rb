@@ -4,12 +4,12 @@ require 'key.rb'
 RSpec.describe AnagramComputer do
 
     before (:each) do
-        file = "./wordlist.txt"
+      file = "./spec/test_wordlist.txt"
         @anagram_computer = AnagramComputer.new(file)
     end
 
     def word_list
-        File.read("./wordlist.txt").split
+        File.read("./spec/test_wordlist.txt").split
     end
 
     it 'creates an anagram computer class' do
@@ -25,7 +25,7 @@ RSpec.describe AnagramComputer do
     end
 
     it 'counts how many words are in a text file' do
-      expect(@anagram_computer.word_count).to eq(word_list.length)
+      expect(@anagram_computer.word_count).to eq(5)
     end
 
     it 'adds key ciphers to an array containing all ciphers' do
@@ -37,14 +37,22 @@ RSpec.describe AnagramComputer do
     end
 
     it 'adds every word from a file to the list of ciphers' do
+      @anagram_computer.create_cipher_list
       word_list = @anagram_computer.word_list
       cipher_list = @anagram_computer.cipher_list
       last_cipher = cipher_list.last
       key_from_last_word = Key.new("tie")
 
       expect(cipher_list.length).to eq(word_list.length)
-      expect(most_recent_cipher).to eq(key_from_last_word.cipher)
+      expect(last_cipher).to eq(key_from_last_word.cipher)
 
+    end
+
+    it 'creates an array containing arrays of the indexes of all matching ciphers' do
+      @anagram_computer.create_cipher_list
+      @anagram_computer.find_anagrams
+      expected_result = [[0,2],[1,3]]
+      expect(@anagram_computer.result).to eq(expected_result)
     end
 
 
