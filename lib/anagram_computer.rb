@@ -19,6 +19,17 @@ class AnagramComputer
         return_anagrams
     end
 
+    def longest_anagrams
+        longest_word_length = length_of_longest_anagram
+        @anagrams_list.select { |anagrams| anagrams.first.length == longest_word_length }.map.to_a
+    end
+
+    def length_of_longest_anagram
+        longest_word_length = 0
+        @anagrams_list.each {|anagrams| longest_word_length = anagrams.first.length if anagrams.first.length > longest_word_length }
+        return longest_word_length
+    end
+
     private
 
     def read_word_list(file)

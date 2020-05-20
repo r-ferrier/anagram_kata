@@ -28,7 +28,6 @@ RSpec.describe AnagramComputer do
       expect(@anagram_computer.word_count).to eq(5)
     end
 
-
     it 'adds every word from a file to the list of ciphers' do
       @anagram_computer.compute
       cipher_list = @anagram_computer.cipher_list
@@ -37,7 +36,6 @@ RSpec.describe AnagramComputer do
 
       expect(cipher_list.length).to eq(@anagram_computer.word_count)
       expect(last_cipher).to eq(key_from_last_word.cipher)
-
     end
 
     it 'creates an array containing arrays of the indexes of all matching ciphers' do
@@ -53,6 +51,21 @@ RSpec.describe AnagramComputer do
       
       expect(@anagram_computer.anagrams_list).to eq(expected_result)
     end
+
+    it 'finds the length of the longest words that are anagrams' do
+      @anagram_computer.compute
+      longest_word_length = 5
+      
+      expect(@anagram_computer.length_of_longest_anagram).to eq(longest_word_length)
+    end
+
+    it 'finds the longest words that are anagrams' do
+      @anagram_computer.compute
+      longest_words = [["words","sword"]]
+      
+      expect(@anagram_computer.longest_anagrams).to eq(longest_words)
+    end
+
 
 
 
